@@ -1,0 +1,52 @@
+{
+    "geode": "3.1.1",
+    "gd": {
+        "android": "2.206",
+        "win": "2.206",
+        "mac": "2.206"
+    },
+    "version": "v1.0.0",
+    "id": "hiimjustin000.level_info_colors",
+    "name": "Level Info Colors",
+    "developer": "hiimjustin000",
+    "description": "A mod that allows you to customize the background color of the level info page.",
+    "repository": "https://github.com/hiimjustin000/LevelInfoColors",
+    "dependencies": [
+        {
+            "id": "geode.node-ids",
+            "version": ">=v1.12.0",
+            "importance": "required"
+        }
+    ],
+    "settings": {
+        "normal-color": {
+            "name": "Normal Color",
+            "description": "The color of the background when the level is not daily, weekly, or in a gauntlet.",
+            "type": "color",
+            "default": "#0066FF"
+        },
+        "daily-color": {
+            "name": "Daily Color",
+            "description": "The color of the background when the level is daily.",
+            "type": "color",
+            "default": "#0066FF"
+        },
+        "weekly-color": {
+            "name": "Weekly Color",
+            "description": "The color of the background when the level is weekly.",
+            "type": "color",
+            "default": "#333333"
+        },
+        "gauntlet-color": {
+            "name": "Gauntlet Color",
+            "description": "The color of the background when the level is in a gauntlet.",
+            "type": "color",
+            "default": "#333333"
+        }
+    },
+    "resources": {
+        "sprites": [
+            "resources/*.png"
+        ]
+    }
+}
