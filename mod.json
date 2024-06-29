@@ -5,7 +5,7 @@
         "win": "2.206",
         "mac": "2.206"
     },
-    "version": "v1.0.0",
+    "version": "v1.0.1",
     "id": "hiimjustin000.level_info_colors",
     "name": "Level Info Colors",
     "developer": "hiimjustin000",
@@ -48,5 +48,11 @@
         "sprites": [
             "resources/*.png"
         ]
-    }
+    },
+    "tags": [
+        "customization",
+        "enhancement",
+        "interface",
+        "offline"
+    ]
 }
