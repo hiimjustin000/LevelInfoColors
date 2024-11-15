@@ -1,16 +1,15 @@
 {
-    "geode": "3.1.1",
+    "geode": "4.0.0-alpha.1",
     "gd": {
-        "android": "2.206",
-        "win": "2.206",
-        "mac": "2.206"
+        "android": "2.2074",
+        "win": "2.2074",
+        "mac": "2.2074"
     },
-    "version": "v1.0.1",
+    "version": "v1.0.2-beta.1",
     "id": "hiimjustin000.level_info_colors",
     "name": "Level Info Colors",
     "developer": "hiimjustin000",
     "description": "A mod that allows you to customize the background color of the level info page.",
-    "repository": "https://github.com/hiimjustin000/LevelInfoColors",
     "dependencies": [
         {
             "id": "geode.node-ids",
@@ -37,6 +36,12 @@
             "type": "color",
             "default": "#333333"
         },
+        "event-color": {
+            "name": "Event Color",
+            "description": "The color of the background when the level is an event.",
+            "type": "color",
+            "default": "#63187E"
+        },
         "gauntlet-color": {
             "name": "Gauntlet Color",
             "description": "The color of the background when the level is in a gauntlet.",
@@ -48,6 +53,11 @@
         "sprites": [
             "resources/*.png"
         ]
+    },
+    "links": {
+        "community": "https://discord.gg/QVKmbvBXA7",
+        "source": "https://github.com/hiimjustin000/LevelInfoColors",
+        "homepage": "https://www.hiimjustin000.com"
     },
     "tags": [
         "customization",

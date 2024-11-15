@@ -1,14 +1,16 @@
 #include "LICColorPopup.hpp"
 
+using namespace geode::prelude;
+
 unsigned char LICColorPopup::stringToByte(std::string const& str) {
     auto i = 0;
     auto res = std::from_chars(str.data(), str.data() + str.size(), i);
     return res.ec == std::errc() ? i : 255;
 }
 
-LICColorPopup* LICColorPopup::create(CCSprite* target, ccColor3B const& color, ccColor3B const& defaultColor, bool isDaily, bool isWeekly, bool isGauntlet) {
+LICColorPopup* LICColorPopup::create(CCSprite* target, ccColor3B const& color, ccColor3B const& defaultColor, bool isDaily, bool isWeekly, bool isEvent, bool isGauntlet) {
     auto ret = new LICColorPopup();
-    if (ret->initAnchored(400.0f, 240.0f, target, color, defaultColor, isDaily, isWeekly, isGauntlet)) {
+    if (ret->initAnchored(400.0f, 240.0f, target, color, defaultColor, isDaily, isWeekly, isEvent, isGauntlet)) {
         ret->autorelease();
         return ret;
     }
@@ -16,7 +18,7 @@ LICColorPopup* LICColorPopup::create(CCSprite* target, ccColor3B const& color, c
     return nullptr;
 }
 
-bool LICColorPopup::setup(CCSprite* target, ccColor3B const& color, ccColor3B const& defaultColor, bool isDaily, bool isWeekly, bool isGauntlet) {
+bool LICColorPopup::setup(CCSprite* target, ccColor3B const& color, ccColor3B const& defaultColor, bool isDaily, bool isWeekly, bool isEvent, bool isGauntlet) {
     setTitle("Select Color");
     m_noElasticity = true;
     m_color = color;
@@ -147,11 +149,7 @@ bool LICColorPopup::setup(CCSprite* target, ccColor3B const& color, ccColor3B co
     m_hexInput->setScale(0.7f);
     m_hexInput->setCommonFilter(CommonFilter::Hex);
     m_hexInput->setCallback([this](std::string const& text) {
-        if (auto color = cc3bFromHexString(text, true)) {
-            m_color.r = color->r;
-            m_color.g = color->g;
-            m_color.b = color->b;
-        }
+        if (auto colorRes = cc3bFromHexString(text, true)) m_color = colorRes.unwrap();
         updateState(m_hexInput);
     });
     hexColumn->addChild(m_hexInput);
@@ -166,9 +164,10 @@ bool LICColorPopup::setup(CCSprite* target, ccColor3B const& color, ccColor3B co
 
     auto okBtnSpr = ButtonSprite::create("OK");
     okBtnSpr->setScale(0.7f);
-    auto okBtn = CCMenuItemExt::createSpriteExtra(okBtnSpr, [this, isDaily, isWeekly, isGauntlet](auto) {
+    auto okBtn = CCMenuItemExt::createSpriteExtra(okBtnSpr, [this, isDaily, isWeekly, isEvent, isGauntlet](auto) {
         if (isDaily) Mod::get()->setSettingValue("daily-color", m_color);
         else if (isWeekly) Mod::get()->setSettingValue("weekly-color", m_color);
+        else if (isEvent) Mod::get()->setSettingValue("event-color", m_color);
         else if (isGauntlet) Mod::get()->setSettingValue("gauntlet-color", m_color);
         else Mod::get()->setSettingValue("normal-color", m_color);
         setKeypadEnabled(false);

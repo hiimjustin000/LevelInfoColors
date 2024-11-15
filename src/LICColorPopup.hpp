@@ -1,27 +1,26 @@
-#include <Geode/Geode.hpp>
-
-using namespace geode::prelude;
-
-class LICColorPopup : public Popup<CCSprite*, ccColor3B const&, ccColor3B const&, bool, bool, bool>, public ColorPickerDelegate {
+class LICColorPopup :
+    public geode::Popup<cocos2d::CCSprite*, cocos2d::ccColor3B const&, cocos2d::ccColor3B const&, bool, bool, bool, bool>,
+    public cocos2d::extension::ColorPickerDelegate
+{
 protected:
-    ccColor3B m_color;
-    ccColor3B m_originalColor;
-    ccColor3B m_defaultColor;
-    CCControlColourPicker* m_picker;
-    TextInput* m_rInput;
-    TextInput* m_gInput;
-    TextInput* m_bInput;
-    TextInput* m_hexInput;
-    CCSprite* m_newColorSpr;
+    cocos2d::ccColor3B m_color;
+    cocos2d::ccColor3B m_originalColor;
+    cocos2d::ccColor3B m_defaultColor;
+    cocos2d::extension::CCControlColourPicker* m_picker;
+    geode::TextInput* m_rInput;
+    geode::TextInput* m_gInput;
+    geode::TextInput* m_bInput;
+    geode::TextInput* m_hexInput;
+    cocos2d::CCSprite* m_newColorSpr;
     CCMenuItemSpriteExtra* m_resetBtn;
     CCMenuItemSpriteExtra* m_hardResetBtn;
 
     static unsigned char stringToByte(std::string const&);
 
-    bool setup(CCSprite*, ccColor3B const&, ccColor3B const&, bool, bool, bool) override;
+    bool setup(cocos2d::CCSprite*, cocos2d::ccColor3B const&, cocos2d::ccColor3B const&, bool, bool, bool, bool) override;
     void updateState(CCNode* except = nullptr);
-    void colorValueChanged(ccColor3B) override;
+    void colorValueChanged(cocos2d::ccColor3B) override;
     void onClose(CCObject*) override;
 public:
-    static LICColorPopup* create(CCSprite*, ccColor3B const&, ccColor3B const&, bool, bool, bool);
+    static LICColorPopup* create(cocos2d::CCSprite*, cocos2d::ccColor3B const&, cocos2d::ccColor3B const&, bool, bool, bool, bool);
 };
